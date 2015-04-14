@@ -1,0 +1,150 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <link rel="stylesheet" href="bower_components/here-maps-api/modules/ui/mapsjs-ui.css">
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="angularHereMapsApp">
+    <a href="https://github.com/lukemarsh/angular-here-maps"><img style="position: fixed; top: 0; right: 0; border: 0; z-index: 10000;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="container">
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a is-active-nav href="#/">Home</a></li>
+            <li><a is-active-nav href="#/install">Getting started</a></li>
+            <li><a is-active-nav href="#/changelog">Changelog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Add your site or application content here -->
+    <div class="container">
+      <div ng-view=""></div>
+    </div>
+    <footer ng-controller="FooterController">
+      <div class="container">
+        <div class="row">
+          <div class="col col-md-3">
+            <h3>Collaborators</h3>
+            <hr>
+            <ul class="list-inline">
+              <li class="thumbnail collaborator" ng-repeat="contributor in contributors">
+                <a ng-href="{{ contributor.url }}" rel="external nofollow">
+                  <img ng-src="{{ contributor.avatar_url }}" alt="{{ contributor.login }}" title="{{ contributor.login }}">
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col col-md-3">
+            <h3>Issues</h3>
+            <hr>
+            <ul class="list-unstyled separated">
+              <li ng-repeat="issue in issues">
+                <span class="label label-danger">{{issue.number}}</span>
+                <a ng-href="{{issue.html_url}}" rel='external'>{{issue.title}}</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col col-md-3">
+            <h3>Activity</h3>
+            <hr>
+            <ul class="list-unstyled separated">
+              <li ng-repeat="event in events | limitTo: 5">
+                <small class="muted">{{ event.created_at | date:"MMM d, y, hh:mm"}}</small><br>
+                <a ng-href="{{ event.actor.url }}" rel="external nofollow">{{ event.actor.login }}</a>
+                <span ng-bind-html="eventLabel(event)"></span>
+              </li>
+            </ul>
+          </div>
+          <div class="col col-md-3">
+            <h3>Latest Commit</h3>
+            <hr>
+            <ul class="list-unstyled separated">
+              <li ng-repeat="issue in issues">
+                <span class="label label-danger">{{issue.number}}</span>
+                <a ng-href="{{issue.html_url}}" rel='external'>{{issue.title}}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+
+    <!-- build:js(.) scripts/oldieshim.js -->
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
+    <![endif]-->
+    <!-- endbuild -->
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/bind-polyfill/index.js"></script>
+    <script src="bower_components/here-maps-api/mapsjs-core.js"></script>
+    <script src="bower_components/angular-here-maps/dist/angular-here-maps.min.js"></script>
+    <script src="bower_components/github/github.js"></script>
+    <script src="bower_components/angular-github-adapter/angular-github-adapter.js"></script>
+    <!-- endbower -->
+    <script src="bower_components/here-maps-api/modules/service/mapsjs-service.js"></script>
+    <script src="bower_components/here-maps-api/modules/mapevents/mapsjs-mapevents.js"></script>
+    <script src="bower_components/here-maps-api/modules/ui/mapsjs-ui.js"></script>
+    <script src="bower_components/here-maps-api/modules/pano/mapsjs-pano.js"></script>
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/install.js"></script>
+        <script src="scripts/controllers/footer.js"></script>
+        <script src="scripts/services/github.js"></script>
+        <script src="scripts/directives/is-active-nav.js"></script>
+        <script src="scripts/controllers/changelog.js"></script>
+        <script src="scripts/services/changelog.js"></script>
+        <!-- endbuild -->
+</body>
+</html>
